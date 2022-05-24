@@ -23,7 +23,8 @@ in {
   libffi = enableStatic prev.libffi;
 
   openssl = prev.openssl.override {
-    static = true;
+    static   = true;
+    withPerl = false;
   };
 
   secp256k1 = enableStatic prev.secp256k1;

@@ -22,6 +22,11 @@ in {
 
   libffi = enableStatic prev.libffi;
 
+  openssl-static-osx = prev.openssl.override {
+    static   = true;
+    withPerl = false;
+  };
+
   secp256k1 = enableStatic prev.secp256k1;
 
   lmdb = prev.lmdb.overrideAttrs (old:

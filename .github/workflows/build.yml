@@ -114,6 +114,7 @@ jobs:
       - name: confirm binary is mostly static
         if: matrix.os == 'macos-latest'
         run: |
+          echo "${{ env.urbit_static }}"
           ls -lh "${{ env.urbit_static }}"
           libs="$(otool -L "${{ env.urbit_static }}/bin/urbit" | tail -n +2)"
 

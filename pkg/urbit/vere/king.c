@@ -11,8 +11,8 @@
 
 //  XX use a new GCP bucket?
 //
-// static const c3_c* ver_hos_c = "https://bootstrap.urbit.org/vere";
-static const c3_c* ver_hos_c = "http://localhost:8000";
+static const c3_c* ver_hos_c = "https://bootstrap.urbit.org/ci/vere";
+// static const c3_c* ver_hos_c = "http://localhost:8000";
 
 //  stash config flags for worker
 //

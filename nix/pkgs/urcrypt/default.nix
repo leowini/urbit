@@ -1,5 +1,5 @@
 { stdenv, autoreconfHook, pkgconfig
-, libaes_siv, openssl, secp256k1
+, libaes_siv, openssl, openssl-static-osx, secp256k1
 , enableStatic ? stdenv.hostPlatform.isStatic }:
 
 stdenv.mkDerivation rec {
@@ -16,6 +16,9 @@ stdenv.mkDerivation rec {
   nativeBuildInputs =
     [ autoreconfHook pkgconfig ];
 
-  propagatedBuildInputs =
-    [ openssl secp256k1 libaes_siv ];
+  propagatedBuildInputs = [
+    (if stdenv.isDarwin && enableStatic then openssl-static-osx else openssl)
+    secp256k1
+    libaes_siv
+  ];
 }

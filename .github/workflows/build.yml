@@ -89,7 +89,33 @@ jobs:
           name: ares
           authToken: ${{ secrets.CACHIX_AUTH_TOKEN }}
 
-      - run: nix-build -A urbit --arg enableStatic true
+      - name: build static binary
+        run: >
+          echo "urbit_static=$(nix-build -A urbit --arg enableStatic true)"
+          >> $GITHUB_ENV
+
+      - name: confirm binary is mostly static
+        if: matrix.os == 'macos-latest'
+        run: |
+          bin="${{ env.urbit_static }}/bin/urbit"
+
+          if [ ! -f "$bin" ]; then
+            echo "no binary at $bin"
+            exit 1;
+          fi
+
+          libs="$(otool -L "${{ env.urbit_static }}/bin/urbit" | tail -n +2)"
+
+          #  XX CoreFoundation?
+          if [ -z "$(echo "$libs" | grep -v libSystem)" ]; then
+            echo "it's mostly static"
+            echo "$libs"
+            exit 0
+          else
+            echo "dynamic links found:"
+            echo "$libs"
+            exit 1
+          fi
 
       - if: ${{ matrix.os == 'ubuntu-latest' }}
         run: nix-build -A urbit-tests

@@ -111,13 +111,13 @@ jobs:
           echo "urbit_static=$(nix-build -A urbit --arg enableStatic true)"
           >> $GITHUB_ENV
 
-      - name: check for mostly-static on macos
+      - name: confirm binary is mostly static
         if: matrix.os == 'macos-latest'
         run: |
           libs="$(otool -L "${{ env.urbit_static }}/bin/urbit" | tail -n +2)"
 
           if [ "$(echo "$libs" | wc -l)" -eq 2 ]; then
-            echo "mostly static"
+            echo "it's mostly static"
             exit 0
           else
             echo "dynamic links found:"

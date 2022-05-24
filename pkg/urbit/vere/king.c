@@ -1109,8 +1109,10 @@ _king_get_vere(c3_c* pac_c, c3_c* ver_c, c3_c* arc_c, c3_t lin_t)
     return -1;
   }
 
-  ret_i = asprintf(&url_c, "%s/%s/%s/vere-v%s-%s",
-                   ver_hos_c, pac_c, ver_c, ver_c, arc_c);
+  // ret_i = asprintf(&url_c, "%s/%s/%s/vere-v%s-%s",
+  //                  ver_hos_c, pac_c, ver_c, ver_c, arc_c);
+  ret_i = asprintf(&url_c, "%s/%s/%s/%s",
+                   ver_hos_c, pac_c, ver_c, arc_c);
   c3_assert( ret_i > 0 );
 
   if ( (ret_i = _king_save_file(url_c, fil_u)) ) {

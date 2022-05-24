@@ -111,6 +111,20 @@ jobs:
           echo "urbit_static=$(nix-build -A urbit --arg enableStatic true)"
           >> $GITHUB_ENV
 
+      - name: check for mostly-static on macos
+        if: matrix.os == 'macos-latest'
+        run: |
+          libs="$(otool -L "${{ env.urbit_static }}/bin/urbit" | tail -n +2)"
+
+          if [ "$(echo "$libs" | wc -l)" -eq 2 ]; then
+            echo "mostly static"
+            exit 0
+          else
+            echo "dynamic links found:"
+            echo "$libs"
+            exit 1
+          fi
+
       - uses: google-github-actions/setup-gcloud@v0.2.0
         if: env.DO_UPLOAD == 'true'
         with:

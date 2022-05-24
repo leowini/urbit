@@ -27,6 +27,9 @@ in {
     brotliSupport = false;
   };
 
+  # this is a lie
+  openssl-static-osx = prev.openssl;
+
   lmdb = prev.lmdb.overrideAttrs (attrs: {
     patches =
       optionalList attrs.patches ++ prev.lib.optional prev.stdenv.isDarwin [

@@ -183,7 +183,7 @@ jobs:
           http://localhost:12321
 
       - name: confirm binary is mostly static
-      - run: |
+        run: |
           if [ -z "$(ldd build/urbit | grep -vi "windows/system32")"]; then
             echo "it's mostly static"
             exit 0

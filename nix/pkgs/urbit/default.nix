@@ -2,7 +2,7 @@
 , cacert, ca-bundle, ivory                               # codegen
 , curlUrbit, ent, gmp, h2o, libsigsegv, libuv, lmdb      # libs
 , murmur3, openssl, openssl-static-osx, softfloat3       #
-, urcrypt, zlib                                          #
+, urcrypt, zlib, zlib-static-osx                         #
 , enableStatic           ? stdenv.hostPlatform.isStatic  # opts
 , enableDebug            ? false
 , doCheck                ? true

@@ -20,11 +20,10 @@ in {
     openssl = final.openssl-static-osx;
   });
 
-  # h2o = prev.h2o.override {
-  #   openssl = final.openssl-static-osx;
-  # };
-
-  h2o = enableStatic prev.h2o;
+  h2o = prev.h2o.override {
+    # openssl = final.openssl-static-osx;
+    zlib = (if stdenv.isDarwin then prev.zlib.static else prev.zlib)
+  };
 
   libuv = enableStatic prev.libuv;
 

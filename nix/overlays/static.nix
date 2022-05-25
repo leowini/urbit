@@ -16,13 +16,15 @@ let
 in {
   gmp = enableStatic prev.gmp;
 
-  curlUrbit = enableStatic (prev.curlUrbit.override {
-    openssl = final.openssl-static-osx;
-  });
+  curlUrbit = enableStatic prev.curlUrbit;
 
-  h2o = prev.h2o.override {
-    openssl = final.openssl-static-osx;
-  };
+  # curlUrbit = enableStatic (prev.curlUrbit.override {
+  #   openssl = final.openssl-static-osx;
+  # });
+
+  # h2o = prev.h2o.override {
+  #   openssl = final.openssl-static-osx;
+  # };
 
   libuv = enableStatic prev.libuv;
 

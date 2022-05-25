@@ -44,7 +44,7 @@ in stdenv.mkDerivation {
     (if stdenv.isDarwin && enableStatic then openssl-static-osx else openssl)
     softfloat3
     urcrypt
-    (if stdenv.isDarwin && enableStatic then zlib.static else zlib)
+    (if stdenv.isDarwin && enableStatic then zlib-static-osx else zlib)
   ];
 
   # Ensure any `/usr/bin/env bash` shebang is patched.

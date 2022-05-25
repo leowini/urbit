@@ -22,7 +22,7 @@ in {
 
   h2o = prev.h2o.override {
     # openssl = final.openssl-static-osx;
-    zlib = (if stdenv.isDarwin then prev.zlib.static else prev.zlib)
+    zlib = (if stdenv.isDarwin then prev.zlib.static else prev.zlib);
   };
 
   libuv = enableStatic prev.libuv;

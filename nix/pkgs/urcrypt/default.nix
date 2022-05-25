@@ -2,7 +2,7 @@
 , libaes_siv, openssl, openssl-static-osx, secp256k1
 , enableStatic ? stdenv.hostPlatform.isStatic }:
 
-in stdenv.mkDerivation rec {
+stdenv.mkDerivation rec {
   name = "urcrypt";
   src  = ../../../pkg/urcrypt;
 

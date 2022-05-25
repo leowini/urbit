@@ -22,9 +22,9 @@ in {
   #   openssl = final.openssl-static-osx;
   # });
 
-  # h2o = prev.h2o.override {
-  #   openssl = final.openssl-static-osx;
-  # };
+  h2o = prev.h2o.override {
+    openssl = final.openssl-static-osx;
+  };
 
   libuv = enableStatic prev.libuv;
 

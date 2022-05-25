@@ -114,12 +114,12 @@ jobs:
       - name: confirm binary is mostly static
         if: matrix.os == 'macos-latest'
         run: |
-          echo "${{ env.urbit_static }}"
-          ls -lh "${{ env.urbit_static }}"
           libs="$(otool -L "${{ env.urbit_static }}/bin/urbit" | tail -n +2)"
 
-          if [ "$(echo "$libs" | wc -l)" -eq 2 ]; then
+          #  XX CoreFoundation?
+          if [ -z "$(echo "$libs" | grep -v libSystem)" ]; then
             echo "it's mostly static"
+            echo "$libs"
             exit 0
           else
             echo "dynamic links found:"

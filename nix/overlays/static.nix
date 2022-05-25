@@ -24,6 +24,8 @@ in {
   #   openssl = final.openssl-static-osx;
   # };
 
+  h2o = enableStatic prev.h2o;
+
   libuv = enableStatic prev.libuv;
 
   libffi = enableStatic prev.libffi;

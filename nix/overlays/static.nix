@@ -16,7 +16,7 @@ let
 in {
   gmp = enableStatic prev.gmp;
 
-  curlUrbit = enableStatic prev.curlUrbit;
+  curlUrbit = enableStatic (prev.curlUrbit.override { openssl = final.openssl-static-osx; zlib = final.zlib.static; });
 
   libuv = enableStatic prev.libuv;
 

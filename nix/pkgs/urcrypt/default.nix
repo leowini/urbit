@@ -1,8 +1,9 @@
 { stdenv, autoreconfHook, pkgconfig
-, libaes_siv, openssl, secp256k1
+, libaes_siv, openssl, openssl-static-osx, secp256k1
 , enableStatic ? stdenv.hostPlatform.isStatic }:
 
-stdenv.mkDerivation rec {
+let my-openssl = if enableStatic && stdenv.isDarwin then openssl-static-osx else openssl;
+in stdenv.mkDerivation rec {
   name = "urcrypt";
   src  = ../../../pkg/urcrypt;
 

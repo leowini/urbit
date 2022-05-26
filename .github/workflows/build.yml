@@ -71,7 +71,7 @@ env:
   DO_UPLOAD: >-
     ${{
     inputs.upload ||
-    (github.ref_name == 'next/vere' && github.ref_type == 'branch')
+    (github.ref_name == 'jb/next-wip' && github.ref_type == 'branch')
     }}
   UPLOAD_BASE: bootstrap.urbit.org/vere
   # make configureable for (pre-)release builds
